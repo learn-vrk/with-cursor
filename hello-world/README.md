@@ -25,3 +25,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Objects Feature
+
+The **Objects** page fetches data from `https://api.restful-api.dev/objects` via an NgRx-powered flow:
+
+1. `ObjectsPageComponent` dispatches `loadObjects` on init.
+2. `ObjectsEffects` performs an HTTP GET (`/api/objects` behind the dev proxy).
+3. Results are stored in the NgRx state and rendered using the Kendo ListView.
+
+During development the Angular dev-server proxies `/api/**` requests to avoid CORS. See `proxy.conf.json`.
+
+### Unit tests
+
+Run once in headless Chrome and exit automatically:
+
+```bash
+npm test
+```
+
+Tests live in:
+* `objects-page.component.spec.ts` – component behaviour & rendering
+* `objects.reducer.spec.ts` – reducer logic

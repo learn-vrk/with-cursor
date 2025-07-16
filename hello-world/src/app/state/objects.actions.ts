@@ -1,6 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import { ApiObject } from './objects.models';
 
+/**
+ * Objects feature actions – load list from remote API.
+ */
 export const loadObjects = createAction('[Objects] Load Objects');
 
 export const loadObjectsSuccess = createAction(

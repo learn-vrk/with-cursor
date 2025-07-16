@@ -5,6 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { ApiObject } from './objects.models';
 
+/**
+ * ObjectsEffects: handles side-effects such as HTTP requests to load Objects
+ * and maps results into success / failure actions.
+ */
 @Injectable()
 export class ObjectsEffects {
   loadObjects$ = createEffect(() =>

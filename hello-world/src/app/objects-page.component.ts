@@ -1,3 +1,10 @@
+/**
+ * ObjectsPageComponent
+ * --------------------
+ * Displays a list of objects fetched from https://api.restful-api.dev/objects.
+ * The component dispatches a NgRx action on init, listens to store selectors
+ * for data / loading / error and presents the results using Kendo ListView.
+ */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListViewModule } from '@progress/kendo-angular-listview';

@@ -1,3 +1,6 @@
+/**
+ * NgRx reducer + feature definition for Objects state.
+ */
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as ObjectsActions from './objects.actions';
 import { ApiObject } from './objects.models';
