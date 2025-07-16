@@ -9,6 +9,10 @@ import { ObjectsEffects } from './state/objects.effects';
 
 const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./home-page.component').then((m) => m.HomePageComponent),
+  },
+  {
     path: 'objects',
     loadComponent: () => import('./objects-page.component').then((m) => m.ObjectsPageComponent),
   },
