@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ListViewModule } from '@progress/kendo-angular-listview';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ApiObject } from './state/objects.models';
@@ -9,47 +10,35 @@ import { objectsFeature } from './state/objects.reducer';
 @Component({
   selector: 'app-objects-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ListViewModule],
   template: `
     <h2>Objects</h2>
-    <div *ngIf="loading$ | async" class="loading">Loading...</div>
-    <div class="objects-grid">
-      <div class="object-card" *ngFor="let obj of objects$ | async">
-        <h3>{{ obj.name }}</h3>
-        <p>ID: {{ obj.id }}</p>
-        <pre>{{ obj.data | json }}</pre>
-      </div>
-    </div>
+    <kendo-listview [data]="(objects$ | async) || []" class="object-listview">
+      <ng-template kendoListViewItemTemplate let-item>
+        <div class="list-item">
+          <strong>{{ item.name }}</strong> (ID: {{ item.id }})
+          <pre>{{ item.data | json }}</pre>
+        </div>
+      </ng-template>
+    </kendo-listview>
     <div *ngIf="error$ | async as error" class="error">
       Error: {{ error | json }}
     </div>
   `,
   styles: [
     `
-    .objects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .object-card {
+    :host {
+      display: block;
       padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: #fafafa;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
-
-    .object-card h3 {
-      margin-top: 0;
-      font-size: 1.1rem;
+    .object-listview .list-item {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #e0e0e0;
     }
-
-    .loading {
-      font-style: italic;
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
     }
-
     .error {
       color: red;
       margin-top: 1rem;

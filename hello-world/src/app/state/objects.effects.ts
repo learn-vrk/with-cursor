@@ -11,7 +11,7 @@ export class ObjectsEffects {
     this.actions$.pipe(
       ofType(ObjectsActions.loadObjects),
       switchMap(() =>
-        this.http.get<ApiObject[]>('https://api.restful-api.dev/objects').pipe(
+        this.http.get<ApiObject[]>('/api/objects').pipe(
           map((objects) => ObjectsActions.loadObjectsSuccess({ objects })),
           catchError((error) => of(ObjectsActions.loadObjectsFailure({ error })))
         )
